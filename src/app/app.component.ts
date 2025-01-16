@@ -1,13 +1,26 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'pgap-web';
+  title = 'Platform for managing calls for projects';
+
+  constructor(
+    private router: Router,
+    private viewportScroller: ViewportScroller
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        // Scroll to the top after each navigation end
+        this.viewportScroller.scrollToPosition([0, 0]);
+      }
+    });
+  }
 }

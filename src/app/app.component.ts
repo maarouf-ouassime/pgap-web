@@ -7,10 +7,10 @@ import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'Platform for managing calls for projects';
+  title = 'Pgap - Angular 18 Bootstrap Admin Dashboard Template';
 
   constructor(
     private router: Router,

@@ -1,0 +1,72 @@
+<div
+  class="forgot-password-area"
+  [class.dark-theme]="themeService.isDark()"
+>
+  <div
+    class="pgap-form mx-auto"
+    [class.component-dark-theme]="themeService.isDark()"
+    [class.component-rtl-enabled]="themeService.isRTLEnabled()"
+  >
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-12 order-2 order-lg-1">
+        <div class="form-image">
+          <img src="images/forgot-password.jpg" alt="forgot-password-image">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 order-1 order-lg-2">
+        <div class="form-content">
+          <div class="logo">
+            <img src="images/logo-big.svg" alt="logo">
+            <img src="images/white-logo-big.svg" class="d-none" alt="logo">
+          </div>
+          <div class="title">
+            <h1 class="fw-semibold">
+              Verify Your Email
+            </h1>
+            <p class="fw-medium">
+              We have sent a verification code to your email address. Please enter the code below to verify your account.            </p>
+          </div>
+          <!-- Alerts -->
+          <div *ngIf="verificationSuccess" class="alert alert-bg-success d-flex align-items-center" role="alert">
+            <i class="ri-checkbox-circle-line me-2"></i>
+            Email verified successfully!
+          </div>
+          <div *ngIf="verificationError" class="alert alert-bg-danger d-flex align-items-center" role="alert">
+            <i class="ri-error-warning-line me-2"></i>
+            {{ errorMessage }}
+          </div>
+          <!-- Verification Form -->
+          <form [formGroup]="verificationForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="main-label d-block fw-medium text-black">
+                Verification Code
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter the 6-digit code"
+                formControlName="code"
+              >
+              <div *ngIf="verificationForm.get('code')?.invalid && verificationForm.get('code')?.touched" class="text-danger">
+                <small *ngIf="verificationForm.get('code')?.errors?.['required']">Verification code is required.</small>
+                <small *ngIf="verificationForm.get('code')?.errors?.['minlength']">Code must be 6 digits.</small>
+              </div>
+            </div>
+            <button type="submit" class="btn-box d-block w-100 border-0 transition fw-medium border-radius">
+              <span class="d-flex align-items-center justify-content-center">
+                <i class="material-symbols-outlined">check_circle</i>
+                Verify
+              </span>
+            </button>
+            <p class="info">
+              Didn't receive the code? <a class="fw-semibold text-primary" (click)="resendCode()">Resend Code</a>
+            </p>
+            <p class="info">
+              Back to <a routerLink="/authentication" class="fw-semibold text-primary">Sign In</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

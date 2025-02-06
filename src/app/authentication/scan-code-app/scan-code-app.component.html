@@ -1,0 +1,27 @@
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+  <div class="card shadow-lg" style="max-width: 400px;">
+    <div class="card-header bg-primary text-white text-center py-3">
+      <h4 class="mb-0">Authentification à deux facteurs</h4>
+    </div>
+    <div class="card-body">
+      <div class="text-center mb-4">
+        <img [src]="qrCodeDataUrl" alt="QR Code pour l'authentification" *ngIf="qrCodeDataUrl" class="img-fluid rounded">
+      </div>
+      <p class="text-center text-muted mb-4">Scannez ce QR code avec votre application d'authentification</p>
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="verificationCode" class="form-label">Code d'authentification</label>
+          <input type="text" class="form-control form-control-lg text-center" id="verificationCode" formControlName="verificationCode" placeholder="000000" maxlength="6">
+          <div class="form-text text-danger" *ngIf="authForm.get('verificationCode')?.invalid && authForm.get('verificationCode')?.touched">
+            Veuillez entrer un code à 6 chiffres valide.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="!authForm.valid || isLoading">
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+          {{ isLoading ? 'Vérification...' : 'Vérifier' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+

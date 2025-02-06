@@ -1,1 +1,10 @@
-<p>footer works!</p>
+<footer
+  [class.card-without-border-radius]="themeService.isCardWithoutBorderRadius()"
+  [class.card-with-box-shadow]="themeService.isCardWithBoxShadow()"
+  class="footer-area text-center bg-white border-top-radius"
+  [class.card-borderd]="themeService.isCardBordered()"
+>
+  <p>
+    © <span>2025</span> Platform for managing calls for projects
+  </p>
+</footer>

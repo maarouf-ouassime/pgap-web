@@ -190,21 +190,21 @@ button {
 
 // Card Bordered CSS
 .card-borderd {
-  .pgap-card {
+  .trezo-card {
     border: 1px solid var(--borderColor) !important;
   }
 }
 
 // Card Without Border Radius CSS
 .card-without-border-radius {
-  .pgap-card {
+  .trezo-card {
     border-radius: 0 !important;
   }
 }
 
 // Card With Box Shadow CSS
 .card-with-box-shadow {
-  .pgap-card {
+  .trezo-card {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
 
     &.shadow-none {
@@ -215,7 +215,7 @@ button {
 
 // Card Box Shadow CSS
 .card-box-shadow {
-  .pgap-card {
+  .trezo-card {
     box-shadow: unset !important;
   }
 }

@@ -52,9 +52,9 @@
   }
 
   // Card
-  .pgap-card {
-    .pgap-card-header {
-      .pgap-card-title {
+  .trezo-card {
+    .trezo-card-header {
+      .trezo-card-title {
         .search-box {
           .input-search {
             background-color: #15203c;
@@ -63,7 +63,7 @@
           }
         }
       }
-      .pgap-card-subtitle {
+      .trezo-card-subtitle {
         .menu-btn {
           &:hover {
             background-color: #0a0e19 !important;
@@ -77,7 +77,7 @@
           }
         }
         .buttons-list {
-          .pgap-card-header-menu {
+          .trezo-card-header-menu {
             .button {
               color: var(--whiteColor);
 
@@ -89,8 +89,8 @@
         }
       }
     }
-    .pgap-card-content {
-      .pgap-card-pagination {
+    .trezo-card-content {
+      .trezo-card-pagination {
         ul,
         ol {
           li {
@@ -107,7 +107,7 @@
       }
     }
     &.table-style-two {
-      .pgap-card-content {
+      .trezo-card-content {
         .basic-table {
           .table,
           table {
@@ -306,11 +306,11 @@
   // Add New Popup
   .add-new-popup {
     .popup-dialog {
-      .pgap-card {
-        .pgap-card-header {
+      .trezo-card {
+        .trezo-card-header {
           background-color: #15203c;
 
-          .pgap-card-subtitle {
+          .trezo-card-subtitle {
             button {
               color: var(--whiteColor);
 
@@ -505,7 +505,7 @@
   }
 
   // Badge
-  .pgap-badge {
+  .trezo-badge {
     background-color: #15203c;
 
     &.pending {

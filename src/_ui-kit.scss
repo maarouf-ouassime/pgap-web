@@ -36,13 +36,13 @@ h6,
 }
 
 // Card
-.pgap-card {
+.trezo-card {
   padding: 25px;
 
-  .pgap-card-header {
+  .trezo-card-header {
     margin-bottom: 25px;
 
-    .pgap-card-title {
+    .trezo-card-title {
       .search-box {
         width: 265px;
 
@@ -78,7 +78,7 @@ h6,
         }
       }
     }
-    .pgap-card-subtitle {
+    .trezo-card-subtitle {
       .dot-menu {
         font-size: 26px;
         margin-right: -2px;
@@ -211,7 +211,7 @@ h6,
             color: var(--primaryColor);
           }
         }
-        .pgap-card-header-menu {
+        .trezo-card-header-menu {
           .button {
             color: var(--blackColor);
             margin-right: 0;
@@ -280,7 +280,7 @@ h6,
       }
     }
   }
-  .pgap-card-content {
+  .trezo-card-content {
     .form-group {
       margin-bottom: 25px;
 
@@ -329,7 +329,7 @@ h6,
         }
       }
     }
-    .pgap-card-pagination {
+    .trezo-card-pagination {
       padding: 14px 20px;
       border-radius: 0 0 7px 7px;
       border: {
@@ -385,7 +385,7 @@ h6,
     }
   }
   &.table-style-two {
-    .pgap-card-content {
+    .trezo-card-content {
       margin: {
         left: -25px;
         right: -25px;
@@ -433,7 +433,7 @@ h6,
           }
         }
       }
-      .pgap-card-pagination {
+      .trezo-card-pagination {
         border-radius: 0;
         padding: 15px 25px 0 25px;
         border: {
@@ -857,7 +857,7 @@ h6,
               margin-left: 12px;
             }
           }
-          .pgap-badge {
+          .trezo-badge {
             padding: 3px 8px;
           }
           .impressions {
@@ -995,7 +995,7 @@ h6,
     --bs-progress-bg: #ffcea9;
     --bs-progress-bar-bg: var(--orangeColor);
   }
-  &.pgap-progress {
+  &.trezo-progress {
     --bs-progress-height: 4px;
   }
   &.bg-secondary {
@@ -1522,8 +1522,8 @@ textarea {
       left: auto;
       right: auto;
     }
-    .pgap-card {
-      .pgap-card-header {
+    .trezo-card {
+      .trezo-card-header {
         background-color: #f6f7f9;
         border-radius: 7px 7px 0 0;
         padding: 25px;
@@ -1532,7 +1532,7 @@ textarea {
           left: -25px;
           right: -25px;
         }
-        .pgap-card-subtitle {
+        .trezo-card-subtitle {
           button {
             color: var(--blackColor);
             font-size: 23px;
@@ -1543,7 +1543,7 @@ textarea {
           }
         }
       }
-      .pgap-card-content {
+      .trezo-card-content {
         .file-uploader {
           min-height: 140px !important;
         }
@@ -1859,7 +1859,7 @@ textarea {
 }
 
 // Badge
-.pgap-badge {
+.trezo-badge {
   background-color: #ecf0ff;
   color: var(--primaryColor);
   display: inline-block;
@@ -2320,13 +2320,13 @@ textarea {
   }
 
   // Card
-  .pgap-card {
+  .trezo-card {
     padding: 17px;
 
-    .pgap-card-header {
+    .trezo-card-header {
       margin-bottom: 17px;
 
-      .pgap-card-title {
+      .trezo-card-title {
         .search-box {
           margin-bottom: 15px;
           width: 100%;
@@ -2343,7 +2343,7 @@ textarea {
           }
         }
       }
-      .pgap-card-subtitle {
+      .trezo-card-subtitle {
         .dot-menu {
           font-size: 24px;
         }
@@ -2410,7 +2410,7 @@ textarea {
               font-size: 18px;
             }
           }
-          .pgap-card-header-menu {
+          .trezo-card-header-menu {
             .button {
               margin-right: 0;
             }
@@ -2424,7 +2424,7 @@ textarea {
         }
       }
     }
-    .pgap-card-content {
+    .trezo-card-content {
       .form-group {
         margin-bottom: 17px;
 
@@ -2449,7 +2449,7 @@ textarea {
           }
         }
       }
-      .pgap-card-pagination {
+      .trezo-card-pagination {
         padding: 11px 17px;
 
         ul,
@@ -2472,7 +2472,7 @@ textarea {
       }
     }
     &.table-style-two {
-      .pgap-card-content {
+      .trezo-card-content {
         margin: {
           left: -17px;
           right: -17px;
@@ -2506,7 +2506,7 @@ textarea {
             }
           }
         }
-        .pgap-card-pagination {
+        .trezo-card-pagination {
           padding: 15px 17px 0 17px;
         }
       }
@@ -2656,21 +2656,21 @@ textarea {
     .popup-dialog {
       max-width: 400px;
 
-      .pgap-card {
-        .pgap-card-header {
+      .trezo-card {
+        .trezo-card-header {
           padding: 17px;
           margin: {
             top: -17px;
             left: -17px;
             right: -17px;
           }
-          .pgap-card-subtitle {
+          .trezo-card-subtitle {
             button {
               font-size: 22px;
             }
           }
         }
-        .pgap-card-content {
+        .trezo-card-content {
           .form-group {
             margin-bottom: 17px;
           }
@@ -2748,19 +2748,19 @@ textarea {
 /* Min width 576px to Max width 767px */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   // Card
-  .pgap-card {
+  .trezo-card {
     padding: 20px;
 
-    .pgap-card-header {
+    .trezo-card-header {
       margin-bottom: 20px;
 
-      .pgap-card-title {
+      .trezo-card-title {
         .search-box {
           margin-bottom: 0;
           width: 265px;
         }
       }
-      .pgap-card-subtitle {
+      .trezo-card-subtitle {
         .date-btn {
           margin-top: 0;
         }
@@ -2769,14 +2769,14 @@ textarea {
         }
       }
     }
-    .pgap-card-content {
+    .trezo-card-content {
       .form-group {
         margin-bottom: 20px;
       }
     }
     &.table-style-two {
       &.table-style-two {
-        .pgap-card-content {
+        .trezo-card-content {
           margin: {
             left: -20px;
             right: -20px;
@@ -2810,7 +2810,7 @@ textarea {
               }
             }
           }
-          .pgap-card-pagination {
+          .trezo-card-pagination {
             padding: 15px 17px 0 17px;
           }
         }
@@ -2854,8 +2854,8 @@ textarea {
   // Add New Popup
   .add-new-popup {
     .popup-dialog {
-      .pgap-card {
-        .pgap-card-header {
+      .trezo-card {
+        .trezo-card-header {
           padding: 20px;
           margin: {
             top: -20px;
@@ -2863,7 +2863,7 @@ textarea {
             right: -20px;
           }
         }
-        .pgap-card-content {
+        .trezo-card-content {
           .form-group {
             margin-bottom: 20px;
           }
@@ -2909,17 +2909,17 @@ textarea {
 /* Min width 768px to Max width 991px */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   // Card
-  .pgap-card {
-    .pgap-card-header {
+  .trezo-card {
+    .trezo-card-header {
       margin-bottom: 20px;
 
-      .pgap-card-subtitle {
+      .trezo-card-subtitle {
         .menu-btn {
           padding: 5.5px 19px;
         }
       }
     }
-    .pgap-card-content {
+    .trezo-card-content {
       .form-btn-box {
         button {
           font-size: 14px;
@@ -2976,8 +2976,8 @@ textarea {
 /* Min width 992px to Max width 1199px */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   // Card
-  .pgap-card {
-    .pgap-card-content {
+  .trezo-card {
+    .trezo-card-content {
       .form-btn-box {
         button {
           font-size: 15px;
@@ -3000,9 +3000,9 @@ textarea {
 /* Min width 1200px to Max width 1399px */
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   // Card
-  .pgap-card {
-    .pgap-card-header {
-      .pgap-card-subtitle {
+  .trezo-card {
+    .trezo-card-header {
+      .trezo-card-subtitle {
         .menu-btn {
           padding: 6.5px 15px;
 

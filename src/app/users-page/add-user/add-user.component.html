@@ -1,0 +1,188 @@
+<!-- Breadcrumb -->
+<div
+  class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between"
+>
+  <h5 class="mb-0">Add User</h5>
+  <ol class="breadcrumb list-unstyled mt-0 mb-0 p-0">
+    <li class="breadcrumb-item d-inline-block position-relative">
+      <a routerLink="/dashboard" class="d-inline-block position-relative">
+        <i class="material-symbols-outlined">home</i>
+        Dashboard
+      </a>
+    </li>
+    <li class="breadcrumb-item d-inline-block position-relative">Users</li>
+    <li class="breadcrumb-item d-inline-block position-relative">Add User</li>
+  </ol>
+</div>
+
+<!-- Add User Form -->
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-lg-8">
+      <div
+        class="add-user-card trezo-card mb-25 border-radius d-block bg-white border-0 shadow-none"
+      >
+        <div class="trezo-card-content">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="firstname"
+                  placeholder="E.g. John"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="lastname"
+                  placeholder="E.g. Doe"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="E.g. john@example.com"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">Phone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="phone"
+                  placeholder="E.g. +1 555-445-4455"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">Job</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="job"
+                  placeholder="E.g. Software Engineer"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">Company</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="company"
+                  placeholder="E.g. Google"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">Country</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="country"
+                  placeholder="E.g. France"
+                />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="main-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  placeholder="E.g. France"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group mb-0">
+                <label class="main-label d-block fw-medium text-black"
+                  >Upload Images</label
+                >
+
+                <input
+                  type="file"
+                  (change)="onFileChange($event)"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div
+        class="add-user-card trezo-card mb-25 border-radius d-block bg-white border-0 shadow-none"
+      >
+        <div
+          class="trezo-card-header d-sm-flex align-items-center justify-content-between"
+        >
+          <div class="trezo-card-title">
+            <h5 class="mb-0">Privacy Policy</h5>
+          </div>
+        </div>
+        <div class="trezo-card-content">
+          <div class="boxes"></div>
+          <div class="form-group mb-0">
+            <label class="main-label d-block fw-medium text-black"
+              >Select Your Skills</label
+            >
+            <select class="form-select">
+              <option selected>Select</option>
+              <option value="1">Admin</option>
+              <option value="2">Project Management</option>
+              <option value="3">CP</option>
+              <option value="4">Agent</option>
+              <option value="5">Expert</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Buttons -->
+  <div
+    class="trezo-card mb-25 border-radius d-block bg-transparent p-0 border-0 shadow-none"
+  >
+    <div class="trezo-card-content">
+      <div class="form-btn-box">
+        <button
+          type="button"
+          class="warn d-inline-block fw-medium border-radius border-0 transition"
+          (click)="goBack()"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="primary d-inline-block fw-medium border-radius border-0 transition"
+        >
+          <span class="d-inline-block position-relative">
+            <i class="material-symbols-outlined">add</i> Add User
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

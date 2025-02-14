@@ -7,115 +7,250 @@
     <div class="row align-items-center">
       <div class="col-lg-6 col-md-12 order-2 order-lg-1">
         <div class="form-image">
-          <img src="images/sign-up.jpg" alt="sign-up-image" />
+          <img src="e1.webp" alt="sign-up-image" />
         </div>
       </div>
       <div class="col-lg-6 col-md-12 order-1 order-lg-2">
         <div class="form-content">
+          <div
+            *ngIf="message"
+            class="message"
+            [ngClass]="{ success: isSuccess, error: isError }"
+          >
+            <button class="close-btn" (click)="clearMessage()">×</button>
+            <span class="message-text">{{ message }}</span>
+          </div>
           <div class="logo">
             <img src="images/logo-big.svg" alt="logo" />
             <img src="images/white-logo-big.svg" class="d-none" alt="logo" />
           </div>
           <div class="title">
-            <h1 class="fw-semibold">Sign up to Trezo Dashboard</h1>
-            <p class="fw-medium">
-              Sign up with social account or enter your details
-            </p>
+            <h4 class="fw-semibold text-center">Sign up to PGAP Dashboard</h4>
           </div>
-          <div
-            class="with-socials d-flex align-items-center justify-content-between"
-          >
-            <div>
-              <button
-                type="button"
-                class="d-block w-100 border-radius transition"
-              >
-                <img src="images/icons/google.svg" alt="google" />
-              </button>
-            </div>
-            <div>
-              <button
-                type="button"
-                class="d-block w-100 border-radius transition"
-              >
-                <img src="images/icons/facebook2.svg" alt="facebook" />
-              </button>
-            </div>
-            <div>
-              <button
-                type="button"
-                class="d-block w-100 border-radius transition"
-              >
-                <img src="images/icons/apple.svg" alt="apple" />
-              </button>
-            </div>
-          </div>
-          <form>
-            <div class="form-group">
-              <label class="main-label d-block fw-medium text-black">
-                Full Name
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter your full name"
-              />
-            </div>
-            <div class="form-group">
-              <label class="main-label d-block fw-medium text-black">
-                Email Address
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="example&#64;trezo.com"
-              />
-            </div>
-            <div class="form-group position-relative">
-              <label class="main-label d-block fw-medium text-black">
-                Password
-              </label>
-              <input
-                [type]="isPasswordVisible ? 'text' : 'password'"
-                [value]="password"
-                (input)="onPasswordInput($event)"
-                class="form-control"
-                placeholder="Type password"
-              />
-              <button
-                type="button"
-                (click)="togglePasswordVisibility()"
-                class="icon-button p-0 border-0 bg-transparent transition"
-              >
-                <i
-                  [ngClass]="
-                    isPasswordVisible ? 'ri-eye-line' : 'ri-eye-off-line'
+          <div class="form-content">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+              <!-- Champ pour le prénom -->
+
+              <div class="form-group">
+                <label class="main-label d-block fw-medium text-black"
+                  >Upload your photo</label
+                >
+
+                <input
+                  type="file"
+                  (change)="onFileChange($event)"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="main-label d-block fw-medium text-black"
+                  >Firstname</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  [class.is-invalid]="
+                    signUpForm.get('firstname')?.invalid &&
+                    (submitted || signUpForm.get('firstname')?.touched)
                   "
-                ></i>
-              </button>
-            </div>
-            <button
-              type="button"
-              class="btn-box d-block w-100 border-0 transition fw-medium border-radius"
-            >
-              <span class="d-flex align-items-center justify-content-center">
-                <i class="material-symbols-outlined"> person_4 </i>
-                Sign Up
-              </span>
-            </button>
-            <p class="info">
-              By confirming your email, you agree to our
-              <a class="fw-medium" routerLink=".">Terms of Service</a> and that
-              you have read and understood our
-              <a class="fw-medium" routerLink=".">Privacy Policy</a>.
-            </p>
-            <p class="info">
-              Already have an account.
-              <a routerLink="/authentication" class="fw-semibold text-primary"
-                >Sign In</a
+                  placeholder="Enter your full name"
+                  formControlName="firstname"
+                />
+                <div
+                  *ngIf="
+                    signUpForm.get('firstname')?.invalid &&
+                    (submitted || signUpForm.get('firstname')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <small
+                    *ngIf="signUpForm.get('firstname')?.errors?.['required']"
+                  >
+                    Le prénom est obligatoire.
+                  </small>
+                </div>
+              </div>
+
+              <!-- Champ pour le nom de famille -->
+              <div class="form-group">
+                <label class="main-label d-block fw-medium text-black">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your last name"
+                  formControlName="lastname"
+                />
+                <div
+                  *ngIf="
+                    signUpForm.get('lastname')?.invalid &&
+                    (submitted || signUpForm.get('lastname')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <small
+                    *ngIf="signUpForm.get('lastname')?.errors?.['required']"
+                  >
+                    Le nom est obligatoire.
+                  </small>
+                </div>
+              </div>
+
+              <!-- Champ pour l'email -->
+              <!-- Champ pour l'email -->
+              <div class="form-group">
+                <label class="main-label d-block fw-medium text-black">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="example@trezo.com"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="
+                    signUpForm.get('email')?.invalid &&
+                    (submitted || signUpForm.get('email')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <small *ngIf="signUpForm.get('email')?.errors?.['required']">
+                    L'email est obligatoire.
+                  </small>
+                  <small *ngIf="signUpForm.get('email')?.errors?.['email']">
+                    Veuillez entrer une adresse email valide.
+                  </small>
+                </div>
+              </div>
+
+              <!-- Champ pour la confirmation de l'email -->
+              <div class="form-group">
+                <label class="main-label d-block fw-medium text-black">
+                  Confirm Email Address
+                </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Confirm your email"
+                  formControlName="confirmEmail"
+                />
+                <div
+                  *ngIf="
+                    signUpForm.get('confirmEmail')?.invalid &&
+                    (submitted || signUpForm.get('confirmEmail')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <small
+                    *ngIf="signUpForm.get('confirmEmail')?.errors?.['required']"
+                  >
+                    La confirmation de l'email est obligatoire.
+                  </small>
+                  <small
+                    *ngIf="signUpForm.get('confirmEmail')?.errors?.['email']"
+                  >
+                    Veuillez entrer une adresse email valide.
+                  </small>
+                  <small
+                    *ngIf="signUpForm.get('confirmEmail')?.errors?.['emailMismatch']"
+                  >
+                    Les emails ne correspondent pas.
+                  </small>
+                </div>
+              </div>
+              <!-- Champ pour le mot de passe -->
+              <div class="form-group position-relative">
+                <label class="main-label d-block fw-medium text-black">
+                  Password
+                </label>
+                <input
+                  [type]="isPasswordVisible ? 'text' : 'password'"
+                  class="form-control"
+                  placeholder="Type password"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="
+                    signUpForm.get('password')?.invalid &&
+                    (submitted || signUpForm.get('password')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <small
+                    *ngIf="signUpForm.get('password')?.errors?.['required']"
+                  >
+                    Le password est obligatoire.
+                  </small>
+
+                  <small
+                    *ngIf="signUpForm.get('password')?.errors?.['minlength']"
+                  >
+                    Le mot de passe doit contenir au moins 6 caractères.
+                  </small>
+                </div>
+                <button
+                  type="button"
+                  (click)="togglePasswordVisibility()"
+                  class="icon-button p-0 border-0 bg-transparent transition"
+                >
+                  <i
+                    [ngClass]="
+                      isPasswordVisible ? 'ri-eye-line' : 'ri-eye-off-line'
+                    "
+                  ></i>
+                </button>
+              </div>
+
+              <!-- Champ pour le job -->
+              <re-captcha
+                siteKey="6LdjTsMqAAAAAGUFF384rylDw2vgZ1p-sVou0O8D"
+                (resolved)="handleCaptchaResponse($event)"
+              ></re-captcha>
+              <!-- Question de somme -->
+              <div class="form-group">
+                <label class="main-label d-block fw-medium text-black">
+                  Combien font {{ num1 }} + {{ num2 }} ?
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Entrez la réponse"
+                  [(ngModel)]="userSumResponse"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div *ngIf="submitted && !isSumCorrect()" class="text-danger">
+                  <small>La réponse est incorrecte.</small>
+                </div>
+              </div>
+              <!-- Affichage des erreurs CAPTCHA -->
+              <div *ngIf="submitted && !captchaResponse" class="text-danger">
+                <small>Veuillez compléter le CAPTCHA.</small>
+              </div>
+              <button
+                type="submit"
+                class="btn-box d-block w-100 border-0 transition fw-medium border-radius"
+                [disabled]="signUpForm.invalid || !captchaResponse"
               >
-            </p>
-          </form>
+                <span class="d-flex align-items-center justify-content-center">
+                  <i class="material-symbols-outlined"> person_4 </i>
+                  Sign Up
+                </span>
+              </button>
+              <!-- Bouton de soumission -->
+            </form>
+          </div>
+
+          <!-- Liens et informations supplémentaires -->
+
+          <p class="info">
+            Already have an account.
+            <a routerLink="/authentication" class="fw-semibold text-primary"
+              >Sign In</a
+            >
+          </p>
         </div>
       </div>
     </div>

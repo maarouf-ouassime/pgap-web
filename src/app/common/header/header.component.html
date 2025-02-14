@@ -146,52 +146,21 @@
           </i>
         </button>
         <div class="language-menu-dropdown bg-white border-radius" *ngIf="isLanguageDropdownOpen">
-                    <span class="title fw-semibold text-black d-block">
-                        Choose Language
-                    </span>
+  <span class="title fw-semibold text-black d-block">
+    {{ 'CHOOSE_LANGUAGE' | translate }}
+  </span>
           <ul class="menu-body p-0 mb-0 mt-0 list-unstyled">
-            <li>
-              <button class="d-block w-100 bg-transparent fw-medium border-0 text-start">
+            <li *ngFor="let lang of languages">
+              <button class="d-block w-100 bg-transparent fw-medium border-0 text-start" (click)="changeLanguage(lang.code)">
                 <div class="d-flex align-items-center">
-                  <img src="images/flags/usa.svg" alt="usa">
-                  English
-                </div>
-              </button>
-            </li>
-            <li>
-              <button class="d-block w-100 bg-transparent fw-medium border-0 text-start">
-                <div class="d-flex align-items-center">
-                  <img src="images/flags/canada.svg" alt="canada">
-                  Canada
-                </div>
-              </button>
-            </li>
-            <li>
-              <button class="d-block w-100 bg-transparent fw-medium border-0 text-start">
-                <div class="d-flex align-items-center">
-                  <img src="images/flags/germany.svg" alt="germany">
-                  Germany
-                </div>
-              </button>
-            </li>
-            <li>
-              <button class="d-block w-100 bg-transparent fw-medium border-0 text-start">
-                <div class="d-flex align-items-center">
-                  <img src="images/flags/portugal.svg" alt="portugal">
-                  Portugal
-                </div>
-              </button>
-            </li>
-            <li>
-              <button class="d-block w-100 bg-transparent fw-medium border-0 text-start">
-                <div class="d-flex align-items-center">
-                  <img src="images/flags/spain.svg" alt="spain">
-                  Spain
+                  <img [src]="lang.flag" [alt]="lang.name">
+                  {{ lang.name }}
                 </div>
               </button>
             </li>
           </ul>
         </div>
+
       </li>
       <li class="position-relative">
         <button

@@ -1,15 +1,21 @@
 .sign-up-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   background-color: var(--whiteColor);
   padding: {
-    top: 135px;
-    bottom: 135px;
+    top: 20px;
+    bottom: 20px;
   };
   &.dark-theme {
     background-color: #0A0E19;
   }
 }
+
 .pgap-form {
   max-width: 1255px;
+  width: 100%;
   padding: {
     left: 12.5px;
     right: 12.5px;
@@ -184,8 +190,8 @@
 
   .sign-up-area {
     padding: {
-      top: 60px;
-      bottom: 60px;
+      top: 20px;
+      bottom: 20px;
     };
   }
   .pgap-form {
@@ -313,8 +319,8 @@
 
   .sign-up-area {
     padding: {
-      top: 80px;
-      bottom: 80px;
+      top: 20px;
+      bottom: 20px;
     };
   }
   .pgap-form {
@@ -399,8 +405,8 @@
 
   .sign-up-area {
     padding: {
-      top: 100px;
-      bottom: 100px;
+      top: 20px;
+      bottom: 20px;
     };
   }
   .pgap-form {
@@ -450,8 +456,8 @@
 
   .sign-up-area {
     padding: {
-      top: 120px;
-      bottom: 120px;
+      top: 20px;
+      bottom: 20px;
     };
   }
   .pgap-form {

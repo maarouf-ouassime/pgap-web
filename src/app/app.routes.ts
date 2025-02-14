@@ -17,6 +17,11 @@ import {
 import {ScanCodeAppComponent} from "./authentication/scan-code-app/scan-code-app.component";
 import {SurveyCreatorComponent} from "./dashboard/survey-creator/survey-creator.component";
 import {SurveyFormComponent} from "./dashboard/survey-form/survey-form.component";
+import {FeaturesComponent} from "./front-pages/features/features.component";
+import {TeamComponent} from "./front-pages/team/team.component";
+import {ContactComponent} from "./front-pages/contact/contact.component";
+import {FaqComponent} from "./front-pages/faq/faq.component";
+import {SurveyResponseViewComponent} from "./dashboard/survey-response-view/survey-response-view.component";
 
 export const routes: Routes = [
   {
@@ -24,7 +29,11 @@ export const routes: Routes = [
     component: FrontPagesComponent,
     children: [
       {path: '', component: HomeComponent},
-      ]
+      {path: 'features', component: FeaturesComponent},
+      {path: 'team', component: TeamComponent},
+      {path: 'faq', component: FaqComponent},
+      {path: 'contact', component: ContactComponent}
+    ]
   },
   {
     path: 'authentication',
@@ -45,7 +54,8 @@ export const routes: Routes = [
     path: 'dashboard', component: DashboardComponent,
     children: [
       {path: 'survey-creator', component: SurveyCreatorComponent},
-      {path: 'survey-form', component: SurveyFormComponent},
+      {path: 'survey-form/:id', component: SurveyFormComponent},
+      {path: 'survey-response-view/:id', component: SurveyResponseViewComponent},
     ]
   },
   {path: '**', component: NotFoundComponent} // This line will remain down from the whole pages component list

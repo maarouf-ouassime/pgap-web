@@ -40,7 +40,11 @@
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss",
               "node_modules/survey-core/defaultV2.min.css",
-              "node_modules/survey-creator-core/survey-creator-core.min.css"
+              "node_modules/survey-creator-core/survey-creator-core.min.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css",
+              "node_modules/quill/dist/quill.bubble.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js",

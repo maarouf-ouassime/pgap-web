@@ -27,16 +27,5 @@ export class AppComponent {
     });
   }
 
-  getOuassime() {
-    this.authService.getMessageOuassime().subscribe({
-      next: (response) => {
-        console.log('Response from Ouassime', response);
-      },
-      error: (error) => {
-        console.error('Failed to get response from Ouassime', error);
-      }
-    });
-  }
-
   protected readonly ToasterPosition = ToasterPosition;
 }

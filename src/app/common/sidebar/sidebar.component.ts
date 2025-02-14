@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { ToggleService } from '../header/toggle.service';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import {TranslatePipe} from "@ngx-translate/core";
 
 interface MenuItem {
   title: string;
@@ -13,7 +14,7 @@ interface MenuItem {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgScrollbarModule, RouterLinkActive, RouterLink, NgClass],
+  imports: [NgScrollbarModule, RouterLinkActive, RouterLink, NgClass, TranslatePipe],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

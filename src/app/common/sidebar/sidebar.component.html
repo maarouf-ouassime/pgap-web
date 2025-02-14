@@ -44,7 +44,8 @@
                 dashboard
               </i>
               <span class="title lh-1">
-                                Dashboard
+                {{ 'DASHBOARD' | translate }}
+
                             </span>
               <span class="pgap-badge rounded-circle fw-medium d-inline-block text-center">
                                 5
@@ -131,7 +132,7 @@
                 note_stack
               </i>
               <span class="title lh-1">
-                                Front Pages
+                                {{ 'FRONT_PAGES' | translate }}
                             </span>
             </button>
             <div class="accordion-collapse" [ngClass]="{ 'open': isSectionOpen(1) }">

@@ -27,6 +27,18 @@ export class JwtInterceptor implements HttpInterceptor {
       console.log('[JwtInterceptor] Request to auth endpoint, bypassing token addition.');
       return next.handle(request);
     }
+    if (request.url.includes('/api/v1/survey')) {
+      console.log('[JwtInterceptor] Request to auth endpoint, bypassing token addition.');
+      return next.handle(request);
+    }
+    if (request.url.includes('/api/v1/survey-response')) {
+      console.log('[JwtInterceptor] Request to auth endpoint, bypassing token addition.');
+      return next.handle(request);
+    }
+    if (request.url.includes('/api/v1/files')) {
+      console.log('[JwtInterceptor] Request to auth endpoint, bypassing token addition.');
+      return next.handle(request);
+    }
 
     const accessToken = this.authService.getAccessToken();
     console.log('[JwtInterceptor] Access token:', accessToken);

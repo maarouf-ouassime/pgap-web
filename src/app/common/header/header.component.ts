@@ -1,14 +1,16 @@
-import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import {Component, HostListener, inject, Inject, PLATFORM_ID} from '@angular/core';
 import { RouterLink, NavigationEnd, Router } from '@angular/router';
 import { ToggleService } from './toggle.service';
-import { NgClass, NgIf, isPlatformBrowser } from '@angular/common';
+import {NgClass, NgIf, isPlatformBrowser, NgForOf} from '@angular/common';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 import { filter } from 'rxjs/operators';
+import {TranslatePipe} from "@ngx-translate/core";
+import {TranslationService} from "../../../services/translation.service";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, NgClass, NgIf],
+  imports: [RouterLink, NgClass, NgIf, TranslatePipe, NgForOf],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -19,6 +21,21 @@ export class HeaderComponent {
 
   // isToggled
   isToggled = false;
+
+  private translateService = inject(TranslationService);
+
+  languages = [
+    { code: 'en', name: 'English', flag: 'assets/flags/usa.svg' },
+    { code: 'fr', name: 'Français', flag: 'assets/flags/france.svg' },
+    { code: 'de', name: 'Deutsch', flag: 'assets/flags/germany.svg' },
+    { code: 'pt', name: 'Português', flag: 'assets/flags/portugal.svg' },
+    { code: 'es', name: 'Español', flag: 'assets/flags/spain.svg' }
+  ];
+
+  changeLanguage(lang: string) {
+    this.translateService.changeLanguage(lang);
+    this.isLanguageDropdownOpen = false; // Fermer le menu après sélection
+  }
 
   constructor(
     private toggleService: ToggleService,

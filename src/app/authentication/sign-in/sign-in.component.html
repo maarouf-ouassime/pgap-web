@@ -13,7 +13,11 @@
             <img src="images/white-logo-big.svg" class="d-none" alt="logo">
           </div>
           <div class="title">
-            <h1 class="fw-semibold">Welcome back to Pgap!</h1>
+            <h1 class="fw-semibold">Welcome back to Apertus!</h1>
+          </div>
+          <!-- Alert area -->
+          <div *ngIf="alertMessage" class="alert mb-3" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}">
+            {{ alertMessage }}
           </div>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
@@ -35,6 +39,14 @@
                 <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters.</small>
               </div>
             </div>
+            <!-- Math equation field -->
+            <div class="form-group">
+              <label class="main-label d-block fw-medium text-black">Solve this equation: {{ mathEquation?.num1 }} + {{ mathEquation?.num2 }} = ?</label>
+              <input type="number" class="form-control" placeholder="Enter your answer" formControlName="mathAnswer">
+              <div *ngIf="loginForm.get('mathAnswer')?.invalid && loginForm.get('mathAnswer')?.touched" class="text-danger">
+                <small *ngIf="loginForm.get('mathAnswer')?.errors?.['required']">Answer is required.</small>
+              </div>
+            </div>
             <div class="form-group">
               <re-captcha #recaptcha (resolved)="resolved($event)" siteKey="6Lco7MkqAAAAAJOpSTT_Zgb7x0MbFLRfR402SMvg"></re-captcha>
               <div *ngIf="loginForm.get('captcha')?.invalid && loginForm.get('captcha')?.touched" class="text-danger">
@@ -49,10 +61,11 @@
                 <i class="material-symbols-outlined">login</i> Sign In
               </span>
             </button>
-            <p class="info">Don’t have an account. <a routerLink="/authentication/sign-up" class="fw-semibold text-primary">Sign Up</a></p>
+            <p class="info">Don't have an account. <a routerLink="/authentication/sign-up" class="fw-semibold text-primary">Sign Up</a></p>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+

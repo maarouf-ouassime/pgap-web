@@ -6,6 +6,8 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
 import { filter } from 'rxjs/operators';
 import {TranslatePipe} from "@ngx-translate/core";
 import {TranslationService} from "../../../services/translation.service";
+import {User} from "../../models/user.model";
+import {FileStorageService} from "../../../services/file-storage.service";
 
 @Component({
   selector: 'app-header',
@@ -16,6 +18,8 @@ import {TranslationService} from "../../../services/translation.service";
 })
 export class HeaderComponent {
 
+  connectedUser: any;
+
   // isSidebarToggled
   isSidebarToggled = false;
 
@@ -25,11 +29,10 @@ export class HeaderComponent {
   private translateService = inject(TranslationService);
 
   languages = [
-    { code: 'en', name: 'English', flag: 'assets/flags/usa.svg' },
-    { code: 'fr', name: 'Français', flag: 'assets/flags/france.svg' },
-    { code: 'de', name: 'Deutsch', flag: 'assets/flags/germany.svg' },
-    { code: 'pt', name: 'Português', flag: 'assets/flags/portugal.svg' },
-    { code: 'es', name: 'Español', flag: 'assets/flags/spain.svg' }
+    { code: 'en', name: 'English', flag: 'images/flags/usa.svg' },
+    { code: 'fr', name: 'Français', flag: 'images/flags/france.svg' },
+    { code: 'ar', name: 'Arabic', flag: 'images/flags/maroc.svg' },
+
   ];
 
   changeLanguage(lang: string) {
@@ -38,6 +41,7 @@ export class HeaderComponent {
   }
 
   constructor(
+    public fileStorageService: FileStorageService,
     private toggleService: ToggleService,
     public themeService: CustomizerSettingsService,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -58,6 +62,8 @@ export class HeaderComponent {
         this.toggleService.toggle(); // Close the sidebar if it's open
       }
     });
+
+    this.connectedUser = JSON.parse(<string>sessionStorage.getItem("auth-user"));
   }
 
   // Burger Menu Toggle

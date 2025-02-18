@@ -253,17 +253,17 @@
           (click)="toggleProfileDropdown()"
           class="profile-menu-btn border-0 bg-transparent position-relative"
         >
-          <img src="images/admin.png" class="rounded-circle" alt="admin-image">
+          <img src="{{this.fileStorageService.getFileViewUrl('profile','maarouf.png')}}" class="rounded-circle" alt="admin-image">
           <span class="fw-semibold text-black">
-                        Olivia
+                       {{this.connectedUser.firstname}}
                     </span>
         </button>
         <div class="profile-menu-dropdown bg-white border-radius" *ngIf="isProfileDropdownOpen">
           <div class="admin d-flex align-items-center">
-            <img src="images/admin.png" class="rounded-circle" alt="admin-image">
+            <img src="{{this.fileStorageService.getFileViewUrl('profile','maarouf.png')}}" class="rounded-circle" alt="admin-image">
             <div>
                             <span class="d-block text-black fw-medium">
-                                Olivia John
+                                 {{this.connectedUser.firstname}}  {{this.connectedUser.lastname}}
                             </span>
               <span class="d-block">
                                 Marketing Manager

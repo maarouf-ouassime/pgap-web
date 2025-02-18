@@ -96,6 +96,15 @@ export class ScanCodeAppComponent implements OnInit {
       next: (response) => {
        console.log('Verification response', response);
         this.toaster.success(response.message, 'Connexion réussie');
+        this.authService.getUserByEmail(request.email).subscribe({
+          next:(resp:any)=>{
+            const user = resp.data;
+            sessionStorage.setItem("auth-user",JSON.stringify(user));
+          },
+          error:(error)=>{
+            console.log(error)
+          }
+        })
         // Redirection après 3 secondes
         setTimeout(() => {
           this.router.navigate(['/dashboard']);

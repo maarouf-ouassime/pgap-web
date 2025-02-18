@@ -13,38 +13,30 @@
             <img src="images/white-logo-big.svg" class="d-none" alt="logo">
           </div>
           <div class="title">
-            <h5 class="fw-semibold">Sign up to Pgap Dashboard</h5>
+            <h5 class="fw-semibold">Sign up to Apertus Dashboard</h5>
           </div>
-          <!-- Alertes -->
-          <div *ngIf="registrationSuccess" class="alert alert-bg-success d-flex align-items-center" role="alert">
-            <i class="ri-mail-check-line me-2"></i>
-            <div>
-              Inscription réussie ! Veuillez vérifier votre boîte email et cliquer sur le lien de validation
-              que nous venons de vous envoyer pour activer votre compte.
-            </div>
-          </div>
-          <div *ngIf="registrationError" class="alert alert-bg-danger d-flex align-items-center" role="alert">
-            <i class="ri-error-warning-line me-2"></i>
-            <div>{{ errorMessage }}</div>
+          <!-- Alert area -->
+          <div *ngIf="alertMessage" class="alert mb-3" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}">
+            {{ alertMessage }}
           </div>
 
           <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-<!--              <label class="main-label d-block fw-medium text-black">First Name</label>-->
+              <label class="main-label d-block fw-medium text-black">First Name</label>
               <input type="text" class="form-control" placeholder="Enter your first name" formControlName="firstname">
               <div *ngIf="signUpForm.get('firstname')?.invalid && signUpForm.get('firstname')?.touched" class="text-danger">
                 <small *ngIf="signUpForm.get('firstname')?.errors?.['required']">First name is required.</small>
               </div>
             </div>
             <div class="form-group">
-<!--              <label class="main-label d-block fw-medium text-black">Last Name</label>-->
+              <label class="main-label d-block fw-medium text-black">Last Name</label>
               <input type="text" class="form-control" placeholder="Enter your last name" formControlName="lastname">
               <div *ngIf="signUpForm.get('lastname')?.invalid && signUpForm.get('lastname')?.touched" class="text-danger">
                 <small *ngIf="signUpForm.get('lastname')?.errors?.['required']">Last name is required.</small>
               </div>
             </div>
             <div class="form-group">
-<!--              <label class="main-label d-block fw-medium text-black">Email Address</label>-->
+              <label class="main-label d-block fw-medium text-black">Email</label>
               <input type="text" class="form-control" placeholder="Email Address" formControlName="email">
               <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched" class="text-danger">
                 <small *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required.</small>
@@ -52,14 +44,13 @@
               </div>
             </div>
             <div class="form-group">
-<!--              <label class="main-label d-block fw-medium text-black">Confirm Email Address</label>-->
               <input type="text" class="form-control" placeholder="Confirm your email" formControlName="confirmEmail">
               <div *ngIf="signUpForm.get('confirmEmail')?.touched" class="text-danger">
                 <small *ngIf="signUpForm.hasError('emailsMismatch')">Emails do not match</small>
               </div>
             </div>
             <div class="form-group position-relative">
-<!--              <label class="main-label d-block fw-medium text-black">Password</label>-->
+              <label class="main-label d-block fw-medium text-black">Password</label>
               <input [type]="isPasswordVisible ? 'text' : 'password'" class="form-control" placeholder="Type password" formControlName="password" (input)="onPasswordInput($event)">
               <button type="button" (click)="togglePasswordVisibility()" class="icon-button p-0 border-0 bg-transparent transition">
                 <i [ngClass]="isPasswordVisible ? 'ri-eye-line' : 'ri-eye-off-line'"></i>
@@ -70,6 +61,14 @@
                 <small *ngIf="signUpForm.get('password')?.errors?.['pattern']">
                   Password must contain at least one number, one uppercase and one lowercase letter.
                 </small>
+              </div>
+            </div>
+            <!-- Math equation field -->
+            <div class="form-group">
+              <label class="main-label d-block fw-medium text-black">Solve this equation: {{ mathEquation?.num1 }} + {{ mathEquation?.num2 }} = ?</label>
+              <input type="number" class="form-control" placeholder="Enter your answer" formControlName="mathAnswer">
+              <div *ngIf="signUpForm.get('mathAnswer')?.invalid && signUpForm.get('mathAnswer')?.touched" class="text-danger">
+                <small *ngIf="signUpForm.get('mathAnswer')?.errors?.['required']">Answer is required.</small>
               </div>
             </div>
             <div class="form-group">
@@ -95,3 +94,4 @@
     </div>
   </div>
 </div>
+

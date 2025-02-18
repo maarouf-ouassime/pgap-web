@@ -1,30 +1,28 @@
-import {Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
-import { AuthService } from '../../../services/auth.service';
-import {NgIf} from "@angular/common";
-import {VerificationRequest} from "../../models/verification-request.model";
-import {AuthenticationRequest} from "../../models/authentication-request.model";
-import {TemporaryCredentialsService} from "../../../services/temporary-credentials.service"; // Assurez-vous d'avoir ce service
+import { Component,  OnInit, ViewChild } from "@angular/core"
+import {  FormBuilder,  FormGroup, Validators, ReactiveFormsModule } from "@angular/forms"
+import {  ActivatedRoute,  Router, RouterLink } from "@angular/router"
+import { NgOtpInputModule,  NgOtpInputComponent } from "ng-otp-input"
+import  { CustomizerSettingsService } from "../../customizer-settings/customizer-settings.service"
+import  { AuthService } from "../../../services/auth.service"
+import { NgIf } from "@angular/common"
+import  { AuthenticationRequest } from "../../models/authentication-request.model"
+import  { TemporaryCredentialsService } from "../../../services/temporary-credentials.service"
 
 @Component({
-  selector: 'app-email-code-verification',
+  selector: "app-email-code-verification",
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgIf],
-  templateUrl: './email-code-verification.component.html',
-  styleUrl: './email-code-verification.component.scss'
+  imports: [RouterLink, ReactiveFormsModule, NgIf, NgOtpInputModule],
+  templateUrl: "./email-code-verification.component.html",
+  styleUrl: "./email-code-verification.component.scss",
 })
-export class EmailCodeVerificationComponent implements OnInit{
-  // États
-  verificationSuccess = false;
-  verificationError = false;
-  errorMessage = '';
-  email: string = ''; // Add email property
-
-
-  // Formulaire de vérification
-  verificationForm: FormGroup;
+export class EmailCodeVerificationComponent implements OnInit {
+  @ViewChild("ngOtpInput") ngOtpInput: NgOtpInputComponent | undefined
+  verificationSuccess = false
+  verificationError = false
+  errorMessage = ""
+  email = ""
+  verificationForm: FormGroup
+  otp = ""
 
   constructor(
     public themeService: CustomizerSettingsService,
@@ -32,88 +30,92 @@ export class EmailCodeVerificationComponent implements OnInit{
     private authService: AuthService,
     private router: Router,
     private tempCredentialsService: TemporaryCredentialsService,
-    private route: ActivatedRoute // Inject ActivatedRoute
+    private route: ActivatedRoute,
   ) {
-    // Get email from query params
-    this.route.queryParams.subscribe(params => {
-      this.email = params['email'];
-    });
-    // Initialisation du formulaire
     this.verificationForm = this.fb.group({
-      code: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
-    });
+      code: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+    })
   }
 
   ngOnInit(): void {
-    // Récupérer l'email depuis les queryParams et envoyer le code
-    this.route.queryParams.subscribe(params => {
-      this.email = params['email'];
-      console.log('Email', this.email);
-      this.sendVerificationCode(); // Envoyer le code automatiquement
-    });
+    this.route.queryParams.subscribe((params) => {
+      this.email = params["email"]
+      console.log("Email", this.email)
+      this.sendVerificationCode()
+    })
   }
 
-  sendVerificationCode(){
+  sendVerificationCode() {
     const request: AuthenticationRequest = {
       email: this.email,
-      authMethode: 'EMAIL_VERIFICATION'
-    };
-    // Appel du service pour vérifier le code
+      authMethode: "EMAIL_VERIFICATION",
+    }
     this.authService.sendEmailCodeLogin(request).subscribe({
       next: (response) => {
-        console.log('Verification code sent', response);
+        console.log("Verification code sent", response)
       },
       error: (error) => {
-        console.error('Failed to send verification code', error);
-      }
-    });
+        console.error("Failed to send verification code", error)
+      },
+    })
   }
 
+  onOtpChange(otp: string) {
+    this.otp = otp
+  }
 
-  // Soumission du formulaire
   onSubmit(): void {
-    if (this.verificationForm.invalid) {
-      this.verificationForm.markAllAsTouched();
-      return;
+    if (this.otp.length !== 6) {
+      this.errorMessage = "Please enter a 6-digit verification code."
+      this.verificationError = true
+      return
     }
 
-    const credentials = this.tempCredentialsService.getCredentials();
+    const credentials = this.tempCredentialsService.getCredentials()
     if (!credentials) {
-      console.error('No credentials found');
-      return;
+      console.error("No credentials found")
+      return
     }
 
     const request: AuthenticationRequest = {
       email: credentials.email,
       password: credentials.password,
-      verificationCode: this.verificationForm.value.code,
-      authMethode: 'EMAIL_VERIFICATION'
-    };
+      verificationCode: this.otp,
+      authMethode: "EMAIL_VERIFICATION",
+    }
 
-    console.log('Verification request', request);
+    console.log("Verification request", request)
 
-    this.tempCredentialsService.clearCredentials();
+    this.tempCredentialsService.clearCredentials()
 
-    // Appel du service pour vérifier le code
     this.authService.login(request).subscribe({
       next: (response) => {
-        this.verificationSuccess = true;
-        this.verificationError = false;
-
-        // Redirection après 3 secondes
+        this.verificationSuccess = true
+        this.verificationError = false
+        this.authService.getUserByEmail(request.email).subscribe({
+          next:(resp:any)=>{
+            const user = resp.data;
+            sessionStorage.setItem("auth-user",JSON.stringify(user));
+          },
+          error:(error)=>{
+            console.log(error)
+        }
+        })
         setTimeout(() => {
-          this.router.navigate(['/dashboard']);
-        }, 3000);
+          this.router.navigate(["/dashboard"])
+        }, 3000)
       },
       error: (error) => {
-        this.verificationError = true;
-        this.errorMessage = error.error?.message || 'Invalid verification code. Please try again.';
-      }
-    });
+        this.verificationError = true
+        this.errorMessage = error.error?.message || "Invalid verification code. Please try again."
+        // @ts-ignore
+        this.ngOtpInput.setValue("")
+      },
+    })
   }
 
-  // Renvoyer le code
   resendCode(): void {
-    this.sendVerificationCode();
+    this.sendVerificationCode()
   }
 }
+

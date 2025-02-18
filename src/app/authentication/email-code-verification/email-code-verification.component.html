@@ -24,7 +24,8 @@
               Verify Your Email
             </h1>
             <p class="fw-medium">
-              We have sent a verification code to your email address. Please enter the code below to verify your account.            </p>
+              We have sent a verification code to your email address. Please enter the code below to verify your account.
+            </p>
           </div>
           <!-- Alerts -->
           <div *ngIf="verificationSuccess" class="alert alert-bg-success d-flex align-items-center" role="alert">
@@ -41,24 +42,19 @@
               <label class="main-label d-block fw-medium text-black">
                 Verification Code
               </label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter the 6-digit code"
-                formControlName="code"
-              >
-              <div *ngIf="verificationForm.get('code')?.invalid && verificationForm.get('code')?.touched" class="text-danger">
-                <small *ngIf="verificationForm.get('code')?.errors?.['required']">Verification code is required.</small>
-                <small *ngIf="verificationForm.get('code')?.errors?.['minlength']">Code must be 6 digits.</small>
-              </div>
+              <ng-otp-input
+                #ngOtpInput
+                (onInputChange)="onOtpChange($event)"
+                [config]="{length: 6, inputStyles: {'width': '50px', 'height': '50px'}}"
+              ></ng-otp-input>
             </div>
-            <button type="submit" class="btn-box d-block w-100 border-0 transition fw-medium border-radius">
+            <button type="submit" class="btn-box d-block w-100 border-0 transition fw-medium border-radius mt-4">
               <span class="d-flex align-items-center justify-content-center">
                 <i class="material-symbols-outlined">check_circle</i>
                 Verify
               </span>
             </button>
-            <p class="info">
+            <p class="info mt-3">
               Didn't receive the code? <a class="fw-semibold text-primary" (click)="resendCode()">Resend Code</a>
             </p>
             <p class="info">
@@ -70,3 +66,4 @@
     </div>
   </div>
 </div>
+

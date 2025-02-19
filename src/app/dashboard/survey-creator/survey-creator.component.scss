@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+}
+
+survey-creator {
+  flex: 1;
+  height: 100%; /* S'étend sur toute la hauteur disponible */
+}
